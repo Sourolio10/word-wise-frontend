@@ -6,7 +6,7 @@ const LogIn = () => {
 
     const userEmailRef = useRef()
     const userPasswordRef = useRef()
-    const signUpUser= async (e)=>{
+    const logInUser= async (e)=>{
         e.preventDefault()
         const userEmail = userEmailRef.current.value
         const userpassword = userPasswordRef.current.value
