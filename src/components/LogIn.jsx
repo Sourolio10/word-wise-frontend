@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 
-const LOG_IN_URL = 'http://localhost:5000/api/users/signup'
+const LOG_IN_URL = 'http://localhost:5000/api/users/login'
 const LogIn = () => {
 
     const userEmailRef = useRef()
