@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useRef } from "react";
-
 const SIGN_UP_URL = 'http://localhost:5000/api/users/signup'
 const SignUp = () => {
 
@@ -9,6 +8,7 @@ const SignUp = () => {
     const firstNameRef = useRef()
     const lastNameRef = useRef()
     const DOBRef = useRef()
+    const genderRef = useRef()
     const signUpUser= async (e)=>{
         e.preventDefault()
         const userEmail = userEmailRef.current.value
@@ -16,7 +16,8 @@ const SignUp = () => {
         const firstName = firstNameRef.current.value
         const lastName = lastNameRef.current.value
         const DOB = DOBRef.current.value
-        console.log(userEmail,userpassword)
+        const gender = genderRef.current.value
+        console.log(firstName, lastName, DOB, gender, userEmail,userpassword)
         const formData = new FormData()
         const response = await fetch(SIGN_UP_URL,{
             headers:{
@@ -24,6 +25,10 @@ const SignUp = () => {
               },
             method:"POST",
             body:new URLSearchParams({
+                'firstName':firstName,
+                'lastName':lastName,
+                'DOB': DOB,
+                'gender':gender,
                 'userEmail':userEmail,
                 'userPassword':userpassword
             })
@@ -36,18 +41,46 @@ const SignUp = () => {
             alert("Cannot create user")
         }
     }
-
-
     return (
         <div className="flex justify-center content-center h-screen items-center bg-white">
             <div className="flex border-2 border-gray-100 items-center justify-center p-52 shadow-md z-10  bg-white">
                 <form className="border-2 border-green-300 p-10 z-10" onSubmit={signUpUser}>
-                    <div className=" flex justify-center text-2xl font-medium text-green-300"> Login </div>
+                    <div className=" flex justify-center text-2xl font-medium text-green-300"> Signup </div>
+                    <div className="p-5">
+                        <label className=" p-5 text-2xl ">
+                            First Name
+                        </label>
+                        <input className="border-yellow-400 bg-gray-50 h-10 text-2xl" type="text" placeholder="First Name" ref={firstNameRef}/>
+                    </div>
+                    <div className="p-5">
+                        <label className=" p-5 text-2xl ">
+                            Last Name
+                        </label>
+                        <input className="border-yellow-400 bg-gray-50 h-10 text-2xl" type="text" placeholder="Last Name" ref={lastNameRef}/>
+                    </div>
+                    <div className="p-5">
+                        <label className=" p-5 text-2xl ">
+                            Date of Birth
+                        </label>
+                        <input className="border-yellow-400 bg-gray-50 h-10 text-2xl" type="date"  ref={DOBRef}/>
+                    </div>
+                    <div className="p-5">
+                        <label className=" p-5 text-2xl ">
+                            Gender
+                        </label>
+                        <select className="border-yellow-400 bg-gray-50 h-10 text-2xl" type="text" ref={genderRef}>
+                        <option value='M'>Male</option>
+
+                        <option value='F'>Female</option>
+
+                        <option value='O'>Other</option>
+                        </select>
+                    </div>
                     <div className="p-5">
                         <label className="p-5 text-2xl">
                             Email Id
                         </label>
-                        <input className="border-yellow-400  bg-gray-50 border-10 h-10 text-2xl" type="text" placeholder="abc@gmail.com" ref={userEmailRef} />
+                        <input className="border-yellow-400  bg-gray-50 border-10 h-10 text-2xl" type="text" placeholder="abc@gmail.com" ref={userEmailRef} />  
                     </div>
                     <div className="p-5">
                         <label className=" p-5 text-2xl ">
