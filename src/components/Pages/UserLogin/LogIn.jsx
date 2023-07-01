@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
+import {userLogin} from "./api/userApis"
 
-const LOG_IN_URL = 'http://localhost:5000/api/users/login'
 const LogIn = () => {
 
     const userEmailRef = useRef()
@@ -11,18 +11,11 @@ const LogIn = () => {
         const userEmail = userEmailRef.current.value
         const userpassword = userPasswordRef.current.value
         console.log(userEmail,userpassword)
-        const formData = new FormData()
-        const response = await fetch(LOG_IN_URL,{
-            headers:{
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-            method:"POST",
-            body:new URLSearchParams({
-                'userEmail':userEmail,
-                'userPassword':userpassword
-            })
-        })
-
+        const userData = {
+            'userEmail':userEmail,
+            'userPassword':userpassword
+        }
+        const response = await userLogin(userData)
         if(response.status == 200){
             alert("LOGGED IN")
         }

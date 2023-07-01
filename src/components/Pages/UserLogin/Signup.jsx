@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useRef } from "react";
-const SIGN_UP_URL = 'http://localhost:5000/api/users/signup'
-const SignUp = () => {
+import {userSignUp} from "./api/userApis"
 
+const SignUp = () => {
     const userEmailRef = useRef()
     const userPasswordRef = useRef()
     const firstNameRef = useRef()
@@ -18,22 +18,15 @@ const SignUp = () => {
         const DOB = DOBRef.current.value
         const gender = genderRef.current.value
         console.log(firstName, lastName, DOB, gender, userEmail,userpassword)
-        const formData = new FormData()
-        const response = await fetch(SIGN_UP_URL,{
-            headers:{
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-            method:"POST",
-            body:new URLSearchParams({
-                'firstName':firstName,
-                'lastName':lastName,
-                'DOB': DOB,
-                'gender':gender,
-                'userEmail':userEmail,
-                'userPassword':userpassword
-            })
-        })
-
+        const userData = {
+            'firstName':firstName,
+            'lastName':lastName,
+            'DOB': DOB,
+            'gender':gender,
+            'userEmail':userEmail,
+            'userPassword':userpassword
+        }
+        const response = await userSignUp(userData)
         if(response.status == 200){
             alert("USER CREATED")
         }

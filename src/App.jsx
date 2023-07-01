@@ -1,7 +1,7 @@
 
 // import './App.css'
-import LogIn from './components/LogIn'
-import SignUp from './components/Signup'
+import LogIn from './components/Pages/UserLogin/LogIn'
+import SignUp from './components/Pages/UserLogin/Signup'
 
 function App() {
 
