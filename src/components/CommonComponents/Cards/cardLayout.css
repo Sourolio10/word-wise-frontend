@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.card{
+    max-w-sm,
+    rounded-lg;
+    overflow-hidden;
+    shadow-2xl;
+    bg-blue-300
+}
