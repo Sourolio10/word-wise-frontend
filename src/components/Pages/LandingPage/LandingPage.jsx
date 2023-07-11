@@ -1,6 +1,6 @@
 import logo from "../../../assets/logo.png"
 import './LandingPage.css';
-
+import { Link } from "react-router-dom";
 const LandingPage = () => {
   return (
     
@@ -8,12 +8,15 @@ const LandingPage = () => {
       <nav className="bg-blue-500 py-4 px-5">
         <div className="container mx-auto flex-row space-x-1 content-end">
           <img className="w-20 h-20" src={logo}/> 
-          <button className="bg-white hover:bg-blue-700 text-blue-500 font-bold py-1 px-4 rounded-full float-right">
+          <Link to="/Login"><button className="bg-white hover:bg-blue-700 text-blue-500 font-bold py-1 px-4 rounded-full float-right">
            Log in
           </button>
-          <button className="bg-white hover:bg-blue-700 text-blue-500 font-bold py-1 px-4 rounded-full float-right">
+          </Link>
+          <Link to="/Signup"><button className="bg-white hover:bg-blue-700 text-blue-500 font-bold py-1 px-4 rounded-full float-right">
            Sign up
           </button>
+          </Link>
+          
         </div>
       </nav>
       <div className="grid place-items-center">
